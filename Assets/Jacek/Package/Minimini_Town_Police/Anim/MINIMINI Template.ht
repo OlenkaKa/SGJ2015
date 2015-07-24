@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1105 &110500000
+HumanTemplate:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MINIMINI Template
+  m_BoneTemplate:
+    Chest: Lumbar4
+    Head: Head
+    Hips: HipPlate
+    Left Index Distal: LIndex3
+    Left Index Intermediate: LIndex2
+    Left Index Proximal: LIndex1
+    Left Little Distal: LPinky3
+    Left Little Intermediate: LPinky2
+    Left Little Proximal: LPinky1
+    Left Middle Distal: LMiddle3
+    Left Middle Intermediate: LMiddle2
+    Left Middle Proximal: LMiddle1
+    Left Ring Distal: LRing3
+    Left Ring Intermediate: LRing2
+    Left Ring Proximal: LRing1
+    Left Thumb Distal: LThumb3
+    Left Thumb Intermediate: LThumb2
+    Left Thumb Proximal: LThumb1
+    LeftFoot: LFootBone1
+    LeftHand: LHand
+    LeftLowerArm: LForearm
+    LeftLowerLeg: LShin
+    LeftShoulder: LShoulder
+    LeftToes: LFootBone2
+    LeftUpperArm: LBicep
+    LeftUpperLeg: LThigh
+    Neck: Neck
+    Right Index Distal: RIndex3
+    Right Index Intermediate: RIndex2
+    Right Index Proximal: RIndex1
+    Right Little Distal: RPinky3
+    Right Little Intermediate: RPinky2
+    Right Little Proximal: RPinky1
+    Right Middle Distal: RMiddle3
+    Right Middle Intermediate: RMiddle2
+    Right Middle Proximal: RMiddle1
+    Right Ring Distal: RRing3
+    Right Ring Intermediate: RRing2
+    Right Ring Proximal: RRing1
+    Right Thumb Distal: RThumb3
+    Right Thumb Intermediate: RThumb2
+    Right Thumb Proximal: RThumb1
+    RightFoot: RFootBone1
+    RightHand: RHand
+    RightLowerArm: RForearm
+    RightLowerLeg: RShin
+    RightShoulder: RShoulder
+    RightToes: RFootBone2
+    RightUpperArm: RBicep
+    RightUpperLeg: RThigh
+    Spine: Lumbar2
