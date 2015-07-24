@@ -4,6 +4,7 @@ using System.Collections;
 public class Controller : MonoBehaviour {
 
 	public float speed = 5;
+	public float range = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -25,9 +26,17 @@ public class Controller : MonoBehaviour {
 
 		if (Input.GetKey ("d"))
 			transform.Translate (Vector3.right * speed * Time.deltaTime);
-	}
 
-	void OnGizmos ()
-	{
+		//WYKRYWANIE PRZESZKODY
+		Ray ray = new Ray (transform.position, Vector3.forward);
+		RaycastHit hit;
+
+		if(Physics.Raycast (ray, out hit, range))
+		{
+			if(hit.collider.gameObject.tag == "Obstacle")
+			{
+				hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+			}
+		}
 	}
 }
