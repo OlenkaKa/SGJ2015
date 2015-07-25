@@ -5,7 +5,7 @@ public class Civilian : MonoBehaviour {
 
 	public enum CivilState
 	{
-		Waiting, FollowingPlayer, Returning
+		Waiting, FollowingPlayer, Returning, Atacking, Panicking
 	}
 
 	public SpawnPoint spawnPoint;
@@ -15,6 +15,7 @@ public class Civilian : MonoBehaviour {
 	private NavMeshAgent nav;
 	private Transform player;
 	private CrowdManager crowdManager;
+	private MoraleManager_00 moraleManager;
 
 	public bool isInCrowd = false;
 	public float distanceToPlayer;
@@ -30,6 +31,7 @@ public class Civilian : MonoBehaviour {
 		nav = GetComponent <NavMeshAgent> ();
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		crowdManager = GameObject.FindGameObjectWithTag ("CrowdManager").GetComponent<CrowdManager>();
+		moraleManager = GameObject.FindGameObjectWithTag ("moraleManager").GetComponent<MoraleManager_00>();
 	}
 
 	void Update ()
@@ -45,17 +47,77 @@ public class Civilian : MonoBehaviour {
 				}
 				else
 				{
-					if (state == CivilState.FollowingPlayer && Vector3.Distance (player.position, transform.position) > distanceToPlayer)
-						nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
-					
+					if (state == CivilState.FollowingPlayer)
+					{
+						if(moraleManager.getOrder() == "Atack")
+						{
+							state = CivilState.Atacking;
+						}
+						else if(moraleManager.getOrder() == "Panic")
+						{
+							state = CivilState.Panicking;
+						}
+						else if(moraleManager.getOrder() == "Retreat")
+						{
+							state = CivilState.Returning;
+						}
+						else if(Vector3.Distance (player.position, transform.position) > distanceToPlayer)
+						{
+							nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
+						}
+						else
+						{
+							nav.destination = transform.position;
+						}
+					}
+					else if (state == CivilState.Atacking)
+					{
+						if(moraleManager.getOrder() == "Panic")
+						{
+							state = CivilState.Panicking;
+						}
+						else if(moraleManager.getOrder() == "Retreat")
+						{
+							state = CivilState.Returning;
+						}
+						else if(moraleManager.getOrder() == "Follow")
+						{
+							state = CivilState.FollowingPlayer;
+						}
+						else
+						{
+							//TODO
+						}
+					}
+					else if (state == CivilState.Panicking)
+					{
+						nav.SetDestination (home);
+						isInCrowd = false;
+					}
 					else if (state == CivilState.Returning)
 					{
-						if(transform.position == home)
+						if(moraleManager.getOrder() == "Atack")
+						{
+							state = CivilState.Atacking;
+						}
+						else if(moraleManager.getOrder() == "Panic")
+						{
+							state = CivilState.Panicking;
+						}
+						else if(moraleManager.getOrder() == "Follow")
+						{
+							state = CivilState.FollowingPlayer;
+						}
+						else if(transform.position == home)
+						{
 							state = CivilState.Waiting;
+							isInCrowd = false;
+						}
 						else
+						{
 							nav.SetDestination (home);
+						}
 					}
-					
 					else
 					{
 						nav.destination = transform.position;
