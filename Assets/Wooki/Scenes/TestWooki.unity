@@ -395,6 +395,10 @@ Prefab:
       propertyPath: MAX_RELOAD_TIME
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 126080, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
+      propertyPath: m_Name
+      value: Cop
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
   m_IsPrefabParent: 0
@@ -490,6 +494,10 @@ Prefab:
     - target: {fileID: 5456776, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 193490, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
+      propertyPath: m_Name
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}

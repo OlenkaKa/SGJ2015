@@ -3,19 +3,22 @@ using System.Collections;
 
 public class RaygunScript_01 : MonoBehaviour 
 {
+	public int DAMAGE;
 	public float MAX_RELOAD_TIME;
 	public float MAX_RANGE;
 	private float currentReloadTime;
-	public int DAMAGE;
 
 	private Collider currentTarget;
-	public AudioSource shootSound;  
 	private Ray shootRay;
 	private RaycastHit shootHit;
+	public AudioSource shootSound;  
+
+	private bool firing;
 
 	// Use this for initialization
 	void Start () 
 	{
+		firing = false;
 		currentTarget = null;
 		currentReloadTime = 0;
 		shootSound = GetComponent<AudioSource> ();
@@ -25,14 +28,16 @@ public class RaygunScript_01 : MonoBehaviour
 	void Update () 
 	{
 		Reload ();
-		if (CheckTargetValidity (currentTarget)) 
+		if (firing) 
 		{
-			RotateTurret ();
-			Fire ();
-		}
-		else 
-		{
-			currentTarget = ScanForTarget();
+			if (CheckTargetValidity (currentTarget)) 
+			{
+				RotateTurret ();
+				Fire ();
+			} else 
+			{
+				currentTarget = ScanForTarget ();
+			}
 		}
 	}
 
@@ -66,9 +71,19 @@ public class RaygunScript_01 : MonoBehaviour
 		{
 			if(RayTargetCheck(target))
 			{
-				if(target.name == "PlayerBall" || target.name == "Civilian")
+				if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
 				{
-					return true;
+					if(target.tag == "Player" || target.tag == "Civilian")
+					{
+						return true;
+					}
+				}
+				else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
+				{
+					if(target.tag == "Cop" || target.tag == "ArmouredCar")
+					{
+						return true;
+					}
 				}
 				return false;
 			}
@@ -110,7 +125,7 @@ public class RaygunScript_01 : MonoBehaviour
 
 	public void RotateTurret()
 	{
-
+		//gameObject.transform.ro
 	}
 
 	public void Fire()
@@ -132,5 +147,15 @@ public class RaygunScript_01 : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void setFiring(bool newFiring)
+	{
+		firing = newFiring;
+	}
+
+	public bool isFiring()
+	{
+		return firing;
 	}
 }
