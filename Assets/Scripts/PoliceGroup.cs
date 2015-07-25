@@ -24,7 +24,7 @@ public class PoliceGroup : MonoBehaviour {
 		police = new List<Policeman> ();
 		for (int i = 0; i < policeAmount; ++i)
 		{
-			Vector3 startPos = transform.position + new Vector3 (Random.Range(1f, 5f), 0.5f, Random.Range(1f, 5f));
+			Vector3 startPos = transform.position + new Vector3 (Random.Range(-5f, 5f), 0.5f, Random.Range(-5f, 5f));
 			GameObject policemanObj = (GameObject)Instantiate (policePrefab, startPos, Quaternion.identity);
 
 			Policeman policeman = policemanObj.GetComponent<Policeman>();

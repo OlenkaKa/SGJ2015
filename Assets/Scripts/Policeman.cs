@@ -43,7 +43,7 @@ public class Policeman : MonoBehaviour
 					nav.SetDestination (ObstacleDetection () ? 
 					                    target.position : target.position + new Vector3 (Random.Range(1f, 2f), 0.5f, Random.Range(1f, 2f)));
 				else
-					nav.SetDestination(target.position);
+					transform.forward = Vector3.Normalize(target.transform.position);//nav.SetDestination(target.position);
 			}
 			
 			else if (state == PoliceState.Returning)
@@ -99,7 +99,7 @@ public class Policeman : MonoBehaviour
 		state = PoliceState.Following;
 	}
 
-	void OnTriggerEnter (Collider other)
+	void OnTriggerStay (Collider other)
 	{
 		if(InPatrolArea() && other.tag == "Civilian" /*|| other.tag == "Player"*/)
 		{
