@@ -122,6 +122,7 @@ GameObject:
   - 114: {fileID: 11463256}
   - 82: {fileID: 8262378}
   - 54: {fileID: 5493342}
+  - 114: {fileID: 11485096}
   m_Layer: 0
   m_Name: Police_01
   m_TagString: Policeman
@@ -1479,7 +1480,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.418150425, y: -.239999995, z: 25.4645157}
+  m_LocalPosition: {x: -2.79305959, y: -.139720574, z: -.219991982}
   m_LocalScale: {x: .0149999997, y: .0149999997, z: .0149999997}
   m_Children:
   - {fileID: 423408}
@@ -2192,6 +2193,19 @@ MonoBehaviour:
   MAX_RELOAD_TIME: 60
   MAX_RANGE: 5
   firing: 1
+--- !u!114 &11485096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8ef6b8b9d19cf4fba71f4106ada344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 5
+  REGENERATION: 0
 --- !u!136 &13608790
 CapsuleCollider:
   m_ObjectHideFlags: 1

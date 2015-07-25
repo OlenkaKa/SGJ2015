@@ -18,34 +18,46 @@ public class Policeman : MonoBehaviour
 	public float rayRange;
 	public float maxDistanceFromHome;
 
+	private MoraleManager_00 moraleManager;
+	private HealthScript_00 healthScript;
 	private NavMeshAgent nav;
 	
 	void Start ()
 	{
 		state = PoliceState.Waiting;
 		nav = GetComponent <NavMeshAgent> ();
+		healthScript = GetComponent<HealthScript_00> ();
+		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
 
 		StartCoroutine (UpdateTarget ());
 	}
 
+	void Update()
+	{
+		if (healthScript != null) 
+		{
+			if(!healthScript.IsAlive())
+			{
+				Death ();
+			}
+		}
+	}
 	IEnumerator UpdateTarget ()
 	{
 		while (true)
 		{
 			if(target == null)
-				state = PoliceState.Returning;
-
+			state = PoliceState.Returning;
 			if (state == PoliceState.Following)
 			{
 				if(!InPatrolArea())
 					state = PoliceState.Returning;
 				else if(Vector3.Distance (target.position, transform.position) > attackDistance)
 					nav.SetDestination (ObstacleDetection () ? 
-					                    target.position : target.position + new Vector3 (Random.Range(1f, 2f), 0.5f, Random.Range(1f, 2f)));
+			            target.position : target.position + new Vector3 (Random.Range(1f, 2f), 0.5f, Random.Range(1f, 2f)));
 				else
 					transform.forward = Vector3.Normalize(target.transform.position);//nav.SetDestination(target.position);
 			}
-			
 			else if (state == PoliceState.Returning)
 			{
 				if(transform.position == home)
@@ -53,7 +65,6 @@ public class Policeman : MonoBehaviour
 				else
 					nav.SetDestination (home);
 			}
-			
 			else
 			{
 				nav.destination = transform.position;
@@ -82,7 +93,11 @@ public class Policeman : MonoBehaviour
 	
 	void Death ()
 	{
-		group.RemovePoliceman (this);
+		if (group != null)
+		{
+			group.RemovePoliceman (this);
+		}
+		moraleManager.increaseMorale (5f);
 		Destroy (gameObject);
 	}
 

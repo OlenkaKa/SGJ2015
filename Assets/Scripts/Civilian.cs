@@ -16,6 +16,8 @@ public class Civilian : MonoBehaviour {
 	private Transform player;
 	private CrowdManager crowdManager;
 	private MoraleManager_00 moraleManager;
+	private RaygunScript_00 weapon;
+	private HealthScript_00 healthScript;
 
 	public bool isInCrowd = false;
 	public float distanceToPlayer;
@@ -29,16 +31,19 @@ public class Civilian : MonoBehaviour {
 		home = transform.position;
 
 		nav = GetComponent <NavMeshAgent> ();
+		weapon = GetComponent <RaygunScript_00> ();
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		crowdManager = GameObject.FindGameObjectWithTag ("CrowdManager").GetComponent<CrowdManager>();
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
+		healthScript = GetComponent<HealthScript_00> ();
+		//weapon.setFiring (false);
 	}
 
 	void Update ()
 	{
 		if(isAlive)
 		{
-			HealthScript_00 healthScript = GetComponent<HealthScript_00> ();
+
 			if (healthScript != null) 
 			{
 				if(!healthScript.IsAlive())
@@ -72,22 +77,30 @@ public class Civilian : MonoBehaviour {
 					}
 					else if (state == CivilState.Atacking)
 					{
+						weapon.setFiring (true);
 						if(moraleManager.getOrder() == "Panic")
 						{
+							weapon.setFiring (false);
 							state = CivilState.Panicking;
 						}
 						else if(moraleManager.getOrder() == "Retreat")
 						{
+							weapon.setFiring (false);
 							state = CivilState.Returning;
 						}
 						else if(moraleManager.getOrder() == "Follow")
 						{
+							weapon.setFiring (false);
 							state = CivilState.FollowingPlayer;
+						}
+						//TODO
+						else if(Vector3.Distance (player.position, transform.position) > distanceToPlayer)
+						{
+							nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
 						}
 						else
 						{
-							//TODO
-							state = CivilState.FollowingPlayer;
+							nav.destination = transform.position;
 						}
 					}
 					else if (state == CivilState.Panicking)

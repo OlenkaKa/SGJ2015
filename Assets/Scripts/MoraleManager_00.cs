@@ -18,7 +18,7 @@ public class MoraleManager_00 : MonoBehaviour {
 	{
 		currentOrder = "Follow";
 		currentMoraleValue = 0f;
-		pendingBuff = 0f;
+		pendingBuff = 10f;
 	}
 	
 	// Update is called once per frame
@@ -27,7 +27,7 @@ public class MoraleManager_00 : MonoBehaviour {
 		if (pendingBuff != 0f) 
 		{
 			increaseMorale(pendingBuff);
-			pendingBuff = 0f;
+			//pendingBuff = 0f;
 		}
 
 		bool prevIsPanicking = isPanicking;
