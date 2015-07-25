@@ -18,7 +18,7 @@ public class RaygunScript_01 : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		firing = false;
+		firing = true;
 		currentTarget = null;
 		currentReloadTime = 0;
 		shootSound = GetComponent<AudioSource> ();
@@ -73,14 +73,14 @@ public class RaygunScript_01 : MonoBehaviour
 			{
 				if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
 				{
-					if(target.tag == "Player" || target.tag == "Civilian")
+					if(target.gameObject.tag == "Player" || target.gameObject.tag == "Civilian")
 					{
 						return true;
 					}
 				}
 				else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
 				{
-					if(target.tag == "Policeman" || target.tag == "ArmouredCar")
+					if(target.gameObject.tag == "Policeman" || target.gameObject.tag == "ArmouredCar")
 					{
 						return true;
 					}

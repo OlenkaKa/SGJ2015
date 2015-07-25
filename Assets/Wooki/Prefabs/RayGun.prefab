@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6126140231e059b499f3a00c5e3b3635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MAX_RELOAD_TIME: 120
-  MAX_RANGE: 100
   DAMAGE: 1
+  MAX_RELOAD_TIME: 60
+  MAX_RANGE: 5
   shootSound: {fileID: 0}
 --- !u!136 &13628904
 CapsuleCollider:
@@ -166,7 +166,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126080}

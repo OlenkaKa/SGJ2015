@@ -335,19 +335,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 193490, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
   m_PrefabInternal: {fileID: 1269457496}
---- !u!114 &800321689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 800321688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08f8ef96fcd22a84abb86a7d9ba9d977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MAX_HEALTH: 10
-  REGENERATION: 1
 --- !u!1001 &965518689
 Prefab:
   m_ObjectHideFlags: 0
@@ -387,21 +374,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 11420360, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
-      propertyPath: MAX_RANGE
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420360, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
-      propertyPath: MAX_RELOAD_TIME
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 126080, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
       propertyPath: m_Name
-      value: AutoTurret
+      value: Policeman
       objectReference: {fileID: 0}
     - target: {fileID: 126080, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
       propertyPath: m_TagString
       value: Policeman
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420360, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
+      propertyPath: MAX_RANGE
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cecee9c9ad03834498a42e445c0c1868, type: 2}
@@ -491,21 +474,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5456776, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5456776, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 193490, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 193490, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 11414712, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}
+      propertyPath: REGENERATION
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9516a9bdb34c8ab42a639d022d5efe8a, type: 2}

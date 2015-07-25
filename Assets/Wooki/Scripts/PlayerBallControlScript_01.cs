@@ -21,7 +21,7 @@ public class PlayerBallControlScript_01 : MonoBehaviour
 		} 
 		else 
 		{
-			speed = 2.5f;
+			speed = 2;
 		}
 	}
 
