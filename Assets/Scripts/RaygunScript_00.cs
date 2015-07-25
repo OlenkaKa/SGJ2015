@@ -13,7 +13,7 @@ public class RaygunScript_00 : MonoBehaviour
 	private RaycastHit shootHit;
 	public AudioSource shootSound;  
 	
-	private bool firing;
+	public bool firing;
 	
 	// Use this for initialization
 	void Start () 
