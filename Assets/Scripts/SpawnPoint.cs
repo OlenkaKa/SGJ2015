@@ -28,7 +28,7 @@ public class SpawnPoint : MonoBehaviour
 
 	void ChilCreate ()
 	{
-		Vector3 offset = new Vector3 (Random.Range(1f, 5f), 0.5f, Random.Range(1f, 5f));
+		Vector3 offset = new Vector3 (Random.Range(-2.5f, 2.5f), 0.5f, Random.Range(-2.5f, 2.5f));
 		GameObject civilian = (GameObject)Instantiate (spawnPrefab, transform.position + offset, Quaternion.identity);
 		civilian.GetComponent<Civilian>().spawnPoint = this;
 		spawnCounter++;
