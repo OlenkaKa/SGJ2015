@@ -10,6 +10,7 @@
  var winText: Texture;
  var toggleGUI : boolean;
  var script : DeciCheck;
+ //private var moraleManager : MoraleManager_00;
  
 public var source: AudioSource; 
  private var samples: float[]; // audio samples
