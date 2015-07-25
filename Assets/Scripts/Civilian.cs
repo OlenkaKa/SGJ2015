@@ -15,11 +15,12 @@ public class Civilian : MonoBehaviour {
 	private NavMeshAgent nav;
 	private Transform player;
 	private CrowdManager crowdManager;
-	public Vector2 placeInCrowd; // x - numer kręgu, y - pozycja w kręgu
+
 	public bool isInCrowd = false;
 	public float distanceToPlayer;
 	public Vector3 offset;
 	public float rayRange;
+	public bool isAlive = true;
 
 	void Start ()
 	{
@@ -29,42 +30,38 @@ public class Civilian : MonoBehaviour {
 		nav = GetComponent <NavMeshAgent> ();
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		crowdManager = GameObject.FindGameObjectWithTag ("CrowdManager").GetComponent<CrowdManager>();
-
-		StartCoroutine (UpdateTarget ());
 	}
 
 	void Update ()
 	{
-		HealthScript_00 healthScript = GetComponent<HealthScript_00> ();
-		if (healthScript != null) 
+		if(isAlive)
 		{
-			if(!healthScript.IsAlive())
+			HealthScript_00 healthScript = GetComponent<HealthScript_00> ();
+			if (healthScript != null) 
 			{
-				Death ();
-			}
-		}
-	}
-	
-	IEnumerator UpdateTarget ()
-	{
-		while (true)
-		{
-			if (state == CivilState.FollowingPlayer && Vector3.Distance (player.position, transform.position) > distanceToPlayer)
-				nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
-				
-			else if (state == CivilState.Returning)
-			{
-				if(transform.position == home)
-					state = CivilState.Waiting;
+				if(!healthScript.IsAlive())
+				{
+					Death ();
+				}
 				else
-					nav.SetDestination (home);
+				{
+					if (state == CivilState.FollowingPlayer && Vector3.Distance (player.position, transform.position) > distanceToPlayer)
+						nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
+					
+					else if (state == CivilState.Returning)
+					{
+						if(transform.position == home)
+							state = CivilState.Waiting;
+						else
+							nav.SetDestination (home);
+					}
+					
+					else
+					{
+						nav.destination = transform.position;
+					}
+				}
 			}
-
-			else
-			{
-				nav.destination = transform.position;
-			}
-			yield return new WaitForSeconds (0.5f);
 		}
 	}
 
@@ -89,9 +86,9 @@ public class Civilian : MonoBehaviour {
 
 	void Death ()
 	{
-		if(isInCrowd && crowdManager.crowd[0].Count > 0)
-			crowdManager.RemoveCivilian (this);
+		isAlive = false;
 		spawnPoint.spawnCounter--;
+		crowdManager.removeCivilian (this);
 		Destroy (gameObject);
 	}
 

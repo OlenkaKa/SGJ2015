@@ -7,6 +7,9 @@
  var dbValue: float;    // sound level - dB
  var volume: float = 2; // set how much the scale will vary
  var success: boolean;
+ var winText: Texture;
+ var toggleGUI : boolean;
+ var script : DeciCheck;
  
 public var source: AudioSource; 
  private var samples: float[]; // audio samples
@@ -33,14 +36,25 @@ public var source: AudioSource;
      if (rmsValue >= 0.8){
      success = true;
      Debug.Log ("Success!");
-     
-      } 
+     Motivated();
+     } 
      if (rmsValue <= 0.8 && rmsValue != 0.0) {
      Debug.Log ("Failure");
      }
+     
      }
 function OnGUI () {
-	if (success == true) {
-	GUI.TextField (Rect (Screen.width/2,Screen.height/2,110,20), "MOTIVATIONAL");
-	}
+	
+	if (toggleGUI == true) {
+	GUI.DrawTexture(new Rect(Screen.width/2 - 127, Screen.height - 32, 256, 32), winText);
+	
+	} 
+}
+
+function Motivated() {
+	 toggleGUI = true;
+     yield WaitForSeconds(2.0);
+     toggleGUI = false;
+     script = GetComponent(DeciCheck);
+     script.enabled = false;
 }
