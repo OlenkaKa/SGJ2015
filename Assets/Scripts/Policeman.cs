@@ -32,6 +32,9 @@ public class Policeman : MonoBehaviour
 	{
 		while (true)
 		{
+			if(target == null)
+				state = PoliceState.Returning;
+
 			if (state == PoliceState.Following)
 			{
 				if(!InPatrolArea())
@@ -39,7 +42,8 @@ public class Policeman : MonoBehaviour
 				else if(Vector3.Distance (target.position, transform.position) > attackDistance)
 					nav.SetDestination (ObstacleDetection () ? 
 					                    target.position : target.position + new Vector3 (Random.Range(1f, 2f), 0.5f, Random.Range(1f, 2f)));
-				//else attack
+				else
+					nav.SetDestination(target.position);
 			}
 			
 			else if (state == PoliceState.Returning)
@@ -97,7 +101,7 @@ public class Policeman : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		if(InPatrolArea() && other.tag == "Civilian" || other.tag == "Player")
+		if(InPatrolArea() && other.tag == "Civilian" /*|| other.tag == "Player"*/)
 		{
 			SetTarget(other.transform);
 			group.BroadcastTarget (target);

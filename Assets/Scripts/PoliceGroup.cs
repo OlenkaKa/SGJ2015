@@ -8,9 +8,13 @@ public class PoliceGroup : MonoBehaviour {
 	public int policeAmount;
 	public Object policePrefab;
 
+	// policemen properties
 	public float maxDistanceFromHome;
 	public float attackDistance;
 	public float rayRange;
+	public int damage;
+	public float reloadTime;
+	public float shootRange;
 
 	private List<Policeman> police;
 	private static Mutex mut = new Mutex();
@@ -28,10 +32,15 @@ public class PoliceGroup : MonoBehaviour {
 			policeman.state = Policeman.PoliceState.Waiting;
 			policeman.home = startPos;
 
-			// policemen details
+			// policemen properties
 			policeman.maxDistanceFromHome = maxDistanceFromHome;
 			policeman.attackDistance = attackDistance;
 			policeman.rayRange = rayRange;
+
+			RaygunScript_00 raygun = policemanObj.GetComponent<RaygunScript_00>();
+			raygun.DAMAGE = damage;
+			raygun.MAX_RELOAD_TIME = reloadTime;
+			raygun.MAX_RANGE = shootRange;
 
 			police.Add(policeman);
 		}
