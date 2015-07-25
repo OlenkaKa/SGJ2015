@@ -31,7 +31,7 @@ public class Civilian : MonoBehaviour {
 		nav = GetComponent <NavMeshAgent> ();
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		crowdManager = GameObject.FindGameObjectWithTag ("CrowdManager").GetComponent<CrowdManager>();
-		moraleManager = GameObject.FindGameObjectWithTag ("moraleManager").GetComponent<MoraleManager_00>();
+		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
 	}
 
 	void Update ()
@@ -150,6 +150,7 @@ public class Civilian : MonoBehaviour {
 	{
 		isAlive = false;
 		spawnPoint.spawnCounter--;
+		moraleManager.decreaseMorale (2.5f);
 		crowdManager.removeCivilian (this);
 		Destroy (gameObject);
 	}

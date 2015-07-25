@@ -23,6 +23,18 @@ public class MoraleManager_00 : MonoBehaviour {
 	void Update () 
 	{
 		moraleDrift ();
+		if (isPanicking) 
+		{
+			if(currentMoraleValue > MORALE_RANGE[1] && isPanicking)
+			{
+				isPanicking = false;
+				currentOrder = "Follow";
+			}
+			else
+			{
+				currentOrder = "Panic";
+			}
+		}
 	}
 	
 	//Drifts morale value towards neutrality
@@ -83,5 +95,39 @@ public class MoraleManager_00 : MonoBehaviour {
 	public string getOrder()
 	{
 		return currentOrder;
+	}
+
+	public float getBuff()
+	{
+		if (isHeroic) 
+		{
+			return 2f;
+		}
+		else if (isPanicking) 
+		{
+			return 0.75f;
+		} 
+		else 
+		{
+			return 1f;
+		}
+	}
+
+	public void setOrder(string newOrder)
+	{
+		if (!isPanicking) 
+		{
+			currentOrder = newOrder;
+		}
+	}
+
+	public void decreaseMorale(float effect)
+	{
+		currentMoraleValue += effect;
+	}
+
+	public void increaseMorale(float effect)
+	{
+		currentMoraleValue -= effect;
 	}
 }

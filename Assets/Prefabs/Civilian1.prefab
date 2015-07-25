@@ -1836,7 +1836,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105526}
   m_LocalRotation: {x: 0, y: -.0691374168, z: 0, w: .997607231}
-  m_LocalPosition: {x: 8.59000015, y: -.506139994, z: 18.4678516}
+  m_LocalPosition: {x: -.156841993, y: -.12195386, z: 23.6936321}
   m_LocalScale: {x: .0149999997, y: .0149999997, z: .0149999997}
   m_Children:
   - {fileID: 496124}
@@ -2081,8 +2081,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: -57.3713493, y: 179.354736, z: 27.6485615}
-  m_Center: {x: -2.24692297, y: 89.1773834, z: -.123512805}
+  m_Size: {x: -57.3713493, y: 179.354752, z: 58.7084732}
+  m_Center: {x: -2.24722791, y: 89.1773911, z: -.398006499}
 --- !u!95 &9503022
 Animator:
   serializedVersion: 3
@@ -2126,11 +2126,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
   state: 0
-  placeInCrowd: {x: 0, y: 0}
   isInCrowd: 0
   distanceToPlayer: 0
   offset: {x: 0, y: 0, z: 0}
   rayRange: 10
+  isAlive: 1
 --- !u!137 &13702588
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
