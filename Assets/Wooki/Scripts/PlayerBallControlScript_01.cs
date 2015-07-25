@@ -7,17 +7,29 @@ public class PlayerBallControlScript_01 : MonoBehaviour
 	private float speed = 10;
 	private Rigidbody rigidBody;
 
-	private const int MAX_HP = 10;
-	private int current_HP;
-
 	void Start ()
 	{
 		rigidBody = GetComponent<Rigidbody>();
-
-		current_HP = MAX_HP;
 	}
 	
 	void FixedUpdate ()
+	{
+		Movement ();
+		if (IsAlive ()) 
+		{
+
+		} 
+		else 
+		{
+			speed = 2.5f;
+		}
+	}
+
+	void OnCollisionEnter(Collision collision) 
+	{
+	}
+
+	private void Movement()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
@@ -27,17 +39,16 @@ public class PlayerBallControlScript_01 : MonoBehaviour
 		rigidBody.AddForce (movement * speed);
 	}
 
-	void OnCollisionEnter(Collision collision) 
+	private bool IsAlive()
 	{
-	}
-
-	public void TakeDamage(int damage)
-	{
-		current_HP = current_HP - damage;
-		if (current_HP <= 0)
+		HealthScript_01 healthScript = GetComponent <HealthScript_01>();
+		if (healthScript != null) 
 		{
-			current_HP = 0;
-			speed = 1;
+			return healthScript.IsAlive();
+		} 
+		else 
+		{
+			return true;
 		}
 	}
 }

@@ -22,7 +22,7 @@ public class BulletScript_01 : MonoBehaviour
 	{
 		if(collision.gameObject.name == "PlayerBall")
 		{
-			PlayerBallControlScript_01 healthScript = collision.gameObject.GetComponent<PlayerBallControlScript_01>();
+			HealthScript_01 healthScript = collision.gameObject.GetComponent<HealthScript_01>();
 			if(healthScript != null)
 			{
 				healthScript.TakeDamage(damage);

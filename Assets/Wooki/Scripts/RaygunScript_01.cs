@@ -8,6 +8,7 @@ public class RaygunScript_01 : MonoBehaviour
 	private float currentReloadTime;
 	public int DAMAGE;
 
+	private Collider currentTarget;
 	public AudioSource shootSound;  
 	private Ray shootRay;
 	private RaycastHit shootHit;
@@ -15,6 +16,7 @@ public class RaygunScript_01 : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		currentTarget = null;
 		currentReloadTime = 0;
 		shootSound = GetComponent<AudioSource> ();
 	}
@@ -23,14 +25,23 @@ public class RaygunScript_01 : MonoBehaviour
 	void Update () 
 	{
 		Reload ();
-		EnemySeek ();
+		if (CheckTargetValidity (currentTarget)) 
+		{
+			RotateTurret ();
+			Fire ();
+		}
+		else 
+		{
+			currentTarget = ScanForTarget();
+		}
 	}
 
+	//Reloads weapon
 	private void Reload()
 	{
 		if (currentReloadTime > 0) 
 		{
-			currentReloadTime -= 10f;
+			currentReloadTime--;
 			if (currentReloadTime < 0) 
 			{
 				currentReloadTime = 0;
@@ -38,40 +49,28 @@ public class RaygunScript_01 : MonoBehaviour
 		}
 	}
 
-	private void EnemySeek()
+	//Checks if given target is valid for shooting
+	private bool CheckTargetValidity(Collider target)
 	{
-		//if przeciwnik w zasiego
-		//{
-		//	obroc sie do niego
-			if(TargetCheck())
-			{
-				Fire();
-			}
-		//}
-		//else
-		//{
-		//	obracaj sie dookola
-		//}
-	}
-
-	private bool TargetCheck()
-	{
-		shootRay.origin = transform.position;
-		shootRay.direction = transform.up;
-		
-		if(Physics.Raycast (shootRay, out shootHit, MAX_RANGE))
+		if (target == null) 
 		{
-			if (shootHit.collider.name == "Cop")
+			return false;
+		}
+	
+		HealthScript_01 healthScript = target.GetComponent<HealthScript_01> ();
+		if (healthScript == null) 
+		{
+			return false;
+		}
+		if (healthScript.IsAlive()) 
+		{
+			if(RayTargetCheck(target))
 			{
+				if(target.name == "PlayerBall" || target.name == "Civilian")
+				{
+					return true;
+				}
 				return false;
-			}
-			else if (shootHit.collider.name == "PlayerBall")
-			{
-				return true;
-			}
-			else if (shootHit.collider.name == "Civilian")
-			{
-				return true;
 			}
 			else
 			{
@@ -81,23 +80,57 @@ public class RaygunScript_01 : MonoBehaviour
 		return false;
 	}
 
+	//Scans for new target from ones in range
+	private Collider ScanForTarget()
+	{
+		Collider[] collidersInRange = Physics.OverlapSphere(transform.position, MAX_RANGE);
+		for (var i = 0; i < collidersInRange.Length; i++) 
+		{
+			if (CheckTargetValidity(collidersInRange[i]))
+			{
+				return collidersInRange[i];
+			}
+		}
+		return null;
+	}
+
+	//Checks if we can hit the target
+	private bool RayTargetCheck(Collider target)
+	{
+		shootRay.origin = transform.position;
+		Vector3 direction = target.transform.position - transform.position;
+		shootRay.direction = direction.normalized;
+
+		if(Physics.Raycast (shootRay, out shootHit, MAX_RANGE))
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void RotateTurret()
+	{
+
+	}
+
 	public void Fire()
 	{
 		if (currentReloadTime == 0) 
 		{
 			shootRay.origin = transform.position;
-			shootRay.direction = transform.up;
+			Vector3 direction = currentTarget.transform.position - transform.position;
+			shootRay.direction = direction.normalized;
 
 			if(Physics.Raycast (shootRay, out shootHit, MAX_RANGE))
 			{
-				PlayerBallControlScript_01 healthScript = shootHit.collider.GetComponent <PlayerBallControlScript_01> ();
+				HealthScript_01 healthScript = shootHit.collider.GetComponent <HealthScript_01> ();
 				if(healthScript != null)
 				{
 					healthScript.TakeDamage (DAMAGE);
+					shootSound.Play();
+					currentReloadTime = MAX_RELOAD_TIME;
 				}
 			}
-			shootSound.Play();
-			currentReloadTime = MAX_RELOAD_TIME;
 		}
 	}
 }
