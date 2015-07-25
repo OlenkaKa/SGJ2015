@@ -21,12 +21,12 @@ public class SpawnPoint : MonoBehaviour
 
 		if (spawnCounter < spawnAmount && timeToSpawn < 0)
 		{
-			ChilCreate ();
+			ChildCreate ();
 			timeToSpawn = spawnRate;
 		}
 	}
 
-	void ChilCreate ()
+	void ChildCreate ()
 	{
 		Vector3 offset = new Vector3 (Random.Range(-2.5f, 2.5f), 0.5f, Random.Range(-2.5f, 2.5f));
 		GameObject civilian = (GameObject)Instantiate (spawnPrefab, transform.position + offset, Quaternion.identity);
