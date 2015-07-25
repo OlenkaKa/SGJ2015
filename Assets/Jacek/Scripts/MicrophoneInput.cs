@@ -17,10 +17,10 @@ public class MicrophoneInput : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKey("space")){
+		if (Input.GetKey("1")){
 			// key pressed: save the current time
 			AudioSource aud = GetComponent<AudioSource>();
-			aud.clip = Microphone.Start("null", false, 3, 44100);
+			aud.clip = Microphone.Start("null", false, 2, 44100);
 			Debug.Log("recording!!!!");
 			aud.Play();
 		}

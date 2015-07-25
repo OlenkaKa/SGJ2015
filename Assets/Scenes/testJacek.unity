@@ -2003,6 +2003,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f2d28155316c4b1dad47946398b45ed, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1786300639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1786300641}
+  - 114: {fileID: 1786300640}
+  m_Layer: 0
+  m_Name: GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1786300640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786300639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af9f04c3d734401d8371d6599b16803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoutText: {fileID: 2800000, guid: a283140eb6c5a4fe799eef2262b60f0e, type: 3}
+  followText: {fileID: 2800000, guid: 89b555518f87a45cebd6f7310821d37b, type: 3}
+  attackText: {fileID: 2800000, guid: 1879a8ee55d914c5c95dc77a8af2bf61, type: 3}
+--- !u!4 &1786300641
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786300639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -71.6351471, y: -9.69095993, z: 2.20079613}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1 &1815342295
 GameObject:
   m_ObjectHideFlags: 0
