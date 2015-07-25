@@ -9,6 +9,7 @@
  var success: boolean;
  var winText: Texture;
  var toggleGUI : boolean;
+ var script : DeciCheck;
  
 public var source: AudioSource; 
  private var samples: float[]; // audio samples
@@ -54,4 +55,6 @@ function Motivated() {
 	 toggleGUI = true;
      yield WaitForSeconds(2.0);
      toggleGUI = false;
+     script = GetComponent(DeciCheck);
+     script.enabled = false;
 }

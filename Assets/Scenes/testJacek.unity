@@ -2369,6 +2369,7 @@ MonoBehaviour:
   success: 0
   winText: {fileID: 2800000, guid: bca2d68f9d3a24f6cb4c5226360ca4e0, type: 3}
   toggleGUI: 0
+  script: {fileID: 0}
   source: {fileID: 1989566254}
 --- !u!114 &1989566256
 MonoBehaviour:
