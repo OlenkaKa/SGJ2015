@@ -18,10 +18,10 @@ public class MicrophoneInput : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKey("1") && audioExists == false){
+		if (Input.GetKey("3") && audioExists == false){
 			// key pressed: save the current time
 			AudioSource aud = GetComponent<AudioSource>();
-			aud.clip = Microphone.Start("null", false, 2, 44100);
+			aud.clip = Microphone.Start("Samson C01U", false, 2, 44100);
 			Debug.Log("recording!!!!");
 			StartCoroutine(AudioCutOff());
 			aud.Play();

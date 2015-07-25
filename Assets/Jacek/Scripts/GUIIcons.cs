@@ -9,9 +9,9 @@ public class GUIIcons : MonoBehaviour {
 
 	void OnGUI() {
 
-		GUI.DrawTexture(new Rect(10, Screen.height - 65, 60, 60), shoutText);
-		GUI.DrawTexture(new Rect(80, Screen.height - 65, 60, 60), followText);
-		GUI.DrawTexture(new Rect(150, Screen.height - 65, 60, 60), attackText);
+		GUI.DrawTexture(new Rect(10, Screen.height - 65, 60, 60), followText);
+		GUI.DrawTexture(new Rect(80, Screen.height - 65, 60, 60), attackText);
+		GUI.DrawTexture(new Rect(150, Screen.height - 65, 60, 60), shoutText);
 }
 
 	// Use this for initialization

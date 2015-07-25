@@ -32,14 +32,28 @@ public var source: AudioSource;
  }
  
  function Update () {
+     var buffValue: float = 0; 
      GetVolume();
-     if (rmsValue >= 0.8){
-     success = true;
-     Debug.Log ("Success!");
-     Motivated();
+     if (rmsValue >= 0.9)
+     {
+     	success = true;
+     	Debug.Log ("Success!");
+     	Motivated();
+     	buffValue = 9;
      } 
-     if (rmsValue <= 0.8 && rmsValue != 0.0) {
-     Debug.Log ("Failure");
+     else if(rmsValue >= 0.6)
+     {
+     	buffValue = 6;
+     }
+     
+     else if(rmsValue >= 0.3)
+     {
+     	buffValue = 3;
+     }
+     
+     else 
+     {
+     	Debug.Log ("Failure");
      }
      
      }
@@ -57,4 +71,5 @@ function Motivated() {
      toggleGUI = false;
      script = GetComponent(DeciCheck);
      script.enabled = false;
+     
 }

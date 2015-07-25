@@ -5,10 +5,12 @@ public class PlayerController_00 : MonoBehaviour {
 	
 	public float speed = 5;
 	public CrowdManager crowdManager;
+	private MoraleManager_00 moraleManager;
 
 	// Use this for initialization
 	void Start () 
 	{
+		moraleManager = GameObject.FindGameObjectWithTag ("moraleManager").GetComponent<MoraleManager_00>();
 	}
 	
 	// Update is called once per frame
@@ -27,6 +29,17 @@ public class PlayerController_00 : MonoBehaviour {
 		
 		if (Input.GetKey ("d"))
 			transform.Translate (Vector3.right * speed * Time.deltaTime);
+	
+	
+		//KOMENDY
+		if (Input.GetKey ("1"))
+			moraleManager.setOrder("Follow");
+
+		if (Input.GetKey ("2"))
+			moraleManager.setOrder("Atack");
+
+		if (Input.GetKey ("3"))
+			moraleManager.setOrder("Shout");
 	}
 	
 	void OnTriggerEnter (Collider other)
