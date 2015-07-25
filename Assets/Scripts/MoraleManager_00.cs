@@ -6,6 +6,7 @@ public class MoraleManager_00 : MonoBehaviour {
 	public string currentOrder;	//Follow, Atack, Panic, Retreat
 	public bool isPanicking;
 	public bool isHeroic;
+	public float pendingBuff;
 	private float currentMoraleValue;
 	
 	private float[] MORALE_RANGE = {-10f, 0f, 10f, 20f, 30f};
@@ -17,11 +18,18 @@ public class MoraleManager_00 : MonoBehaviour {
 	{
 		currentOrder = "Follow";
 		currentMoraleValue = 0f;
+		pendingBuff = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if (pendingBuff != 0f) 
+		{
+			increaseMorale(pendingBuff);
+			pendingBuff = 0f;
+		}
+
 		bool prevIsPanicking = isPanicking;
 		moraleDrift ();
 		if(prevIsPanicking && !isPanicking)
