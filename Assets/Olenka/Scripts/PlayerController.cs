@@ -21,4 +21,13 @@ public class PlayerController : MonoBehaviour
 		movement = movement.normalized * speed * Time.deltaTime;
 		rb.MovePosition (transform.position + movement);
 	}
+
+	void OnTriggerEnter (Collider other)
+	{
+		if (other.gameObject.tag == "Civil")
+		{
+			CilvilController civil = other.gameObject.GetComponent <CilvilController>();
+			civil.JoinPlayer ();
+		}
+	}
 }
