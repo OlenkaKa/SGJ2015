@@ -5,6 +5,7 @@ public class Controller : MonoBehaviour {
 
 	public float speed = 5;
 	public float range = 5;
+	public CrowdManager crowdManager;
 
 	private Vector3 oldPosition;
 	private Vector3 currPosition;
@@ -48,10 +49,9 @@ public class Controller : MonoBehaviour {
 				{
 					hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
 				}
-				else if(hit.collider.GetComponent<Pathfinder>())
+				else if(hit.collider.GetComponent<Civilian>())
 				{
-					hit.collider.GetComponent<Pathfinder>().leader = transform;
-					hit.collider.GetComponent<Pathfinder>().ofset = new Vector3(Random.Range (-hit.collider.GetComponent<Pathfinder>().maxOfset, hit.collider.GetComponent<Pathfinder>().maxOfset),0,Random.Range (-hit.collider.GetComponent<Pathfinder>().maxOfset, hit.collider.GetComponent<Pathfinder>().maxOfset));
+					crowdManager.AddCivilian(hit.collider.GetComponent<Civilian>());
 				}
 			}
 		}
