@@ -11,7 +11,7 @@ public class RaygunScript_00 : MonoBehaviour
 	private Collider currentTarget;
 	private Ray shootRay;
 	private RaycastHit shootHit;
-	public AudioSource shootSound;  
+	private AudioSource shootSound;  
 	
 	public bool firing;
 	
@@ -125,7 +125,8 @@ public class RaygunScript_00 : MonoBehaviour
 	
 	public void RotateTurret()
 	{
-		//gameObject.transform.ro
+		if (currentTarget != null)
+			transform.forward = Vector3.Normalize(currentTarget.transform.position);
 	}
 	
 	public void Fire()
