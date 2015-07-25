@@ -89,6 +89,8 @@ public class Civilian : MonoBehaviour {
 
 	void Death ()
 	{
+		if(isInCrowd && crowdManager.crowd[0].Count > 0)
+			crowdManager.RemoveCivilian (this);
 		spawnPoint.spawnCounter--;
 		Destroy (gameObject);
 	}

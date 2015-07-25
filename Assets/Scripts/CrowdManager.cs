@@ -61,6 +61,29 @@ public class CrowdManager : MonoBehaviour {
 		}
 	}*/
 
+	public void RemoveCivilian (Civilian civ)
+	{
+		Debug.Log (crowd [(int)civ.placeInCrowd.x] [(int)civ.placeInCrowd.y]);
+		crowd [(int)civ.placeInCrowd.x].Remove (crowd [(int)civ.placeInCrowd.x] [(int)civ.placeInCrowd.y]);
+
+		for(int i = 0; i < crowd.Count - 1; i++)
+		{
+			if(i+1 < crowd.Count)
+			{
+				while(crowd[i].Count < maxInCircle && crowd[i+1].Count > 0)
+				{
+					Civilian currCivilian = crowd[i+1][crowd[i+1].Count - 1];
+
+					currCivilian.placeInCrowd = new Vector2 (i, crowd[i].Count - 1);
+					currCivilian.distanceToPlayer = baseDistance * i;
+					currCivilian.offset = new Vector3(Random.Range (-baseDistance * i, baseDistance * i), 0, Random.Range (-baseDistance * i, baseDistance * i));
+
+					crowd[i].Add (currCivilian);
+					crowd[i+1].Remove (currCivilian);
+				}
+			}
+		}
+	}
 
 	public int CalculateCrowd ()
 	{
