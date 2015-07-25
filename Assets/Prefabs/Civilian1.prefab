@@ -118,6 +118,7 @@ GameObject:
   - 114: {fileID: 11489998}
   - 54: {fileID: 5461646}
   - 65: {fileID: 6503268}
+  - 114: {fileID: 11448802}
   m_Layer: 0
   m_Name: Civilian1
   m_TagString: Untagged
@@ -2099,6 +2100,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11448802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8ef6b8b9d19cf4fba71f4106ada344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 5
+  REGENERATION: 0
 --- !u!114 &11489998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2470,6 +2484,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
       value: .0149999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MAX_HEALTH
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -32,6 +32,18 @@ public class Civilian : MonoBehaviour {
 
 		StartCoroutine (UpdateTarget ());
 	}
+
+	void Update ()
+	{
+		HealthScript_00 healthScript = GetComponent<HealthScript_00> ();
+		if (healthScript != null) 
+		{
+			if(!healthScript.IsAlive())
+			{
+				Death ();
+			}
+		}
+	}
 	
 	IEnumerator UpdateTarget ()
 	{
