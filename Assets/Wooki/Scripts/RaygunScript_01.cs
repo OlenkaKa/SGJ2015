@@ -71,21 +71,7 @@ public class RaygunScript_01 : MonoBehaviour
 		{
 			if(RayTargetCheck(target))
 			{
-				if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
-				{
-					if(target.gameObject.tag == "Player" || target.gameObject.tag == "Civilian")
-					{
-						return true;
-					}
-				}
-				else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
-				{
-					if(target.gameObject.tag == "Policeman" || target.gameObject.tag == "ArmouredCar")
-					{
-						return true;
-					}
-				}
-				return false;
+				return true;
 			}
 			else
 			{
@@ -118,7 +104,21 @@ public class RaygunScript_01 : MonoBehaviour
 
 		if(Physics.Raycast (shootRay, out shootHit, MAX_RANGE))
 		{
-			return true;
+			if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
+			{
+				if(shootHit.collider.gameObject.tag == "Player" || shootHit.collider.gameObject.tag == "Civilian")
+				{
+					return true;
+				}
+			}
+			else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
+			{
+				if(shootHit.collider.gameObject.tag == "Policeman" || shootHit.collider.gameObject.tag == "ArmouredCar")
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 		return false;
 	}
