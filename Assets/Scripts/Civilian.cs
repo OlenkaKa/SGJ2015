@@ -19,6 +19,7 @@ public class Civilian : MonoBehaviour {
 	public bool isInCrowd = false;
 	public float distanceToPlayer;
 	public Vector3 offset;
+	public float rayRange;
 
 	void Start ()
 	{
@@ -36,28 +37,53 @@ public class Civilian : MonoBehaviour {
 	{
 		while (true)
 		{
-		if (state == CivilState.FollowingPlayer && Vector3.Distance (player.position, transform.position) > distanceToPlayer)
-				nav.SetDestination (player.position + offset);
-			
-		else if (state == CivilState.Returning)
-		{
-			if(transform.position == home)
-				state = CivilState.Waiting;
-			else
-				nav.SetDestination (home);
-		}
+			if (state == CivilState.FollowingPlayer && Vector3.Distance (player.position, transform.position) > distanceToPlayer)
+				nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
+				
+			else if (state == CivilState.Returning)
+			{
+				if(transform.position == home)
+					state = CivilState.Waiting;
+				else
+					nav.SetDestination (home);
+			}
 
-		else
+			else
+			{
+				nav.destination = transform.position;
+			}
+			yield return new WaitForSeconds (0.5f);
+		}
+	}
+
+	bool ObstacleDetection ()
+	{
+		Vector3 direction = nav.destination - transform.position;
+		Ray ray = new Ray (transform.position, direction.normalized);
+		RaycastHit hit;
+		
+		if(Physics.Raycast (ray, out hit, rayRange))
 		{
-			nav.destination = transform.position;
+			if(hit.collider.gameObject.tag == "Obstacle")
+			{
+				Debug.Log ("Obstacle detected");
+				return true;
+			}
+			
 		}
-		yield return new WaitForSeconds (0.5f);
-		}
+		
+		return false;
 	}
 
 	void Death ()
 	{
 		spawnPoint.spawnCounter--;
 		Destroy (gameObject);
+	}
+
+	void OnDrawGizmos ()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawLine (transform.position, player.position);
 	}
 }

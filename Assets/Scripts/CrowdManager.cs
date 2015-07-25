@@ -61,21 +61,14 @@ public class CrowdManager : MonoBehaviour {
 		}
 	}*/
 
-	bool ObstacleDetection (Civilian civilian)
-	{
-		Vector3 direction = civilian.GetComponent<NavMeshAgent>().destination - civilian.transform.position;
-		Ray ray = new Ray (civilian.transform.position, direction.normalized);
-		RaycastHit hit;
-		
-		if(Physics.Raycast (ray, out hit, rayRange))
-		{
-			if(hit.collider.gameObject.tag == "Obstacle")
-			{
-				return true;
-			}
-			
-		}
 
-		return false;
+	public int CalculateCrowd ()
+	{
+		int crowdSize = 0;
+		
+		foreach (List<Civilian> circle in crowd)
+			crowdSize += circle.Count;
+
+		return crowdSize;
 	}
 }
