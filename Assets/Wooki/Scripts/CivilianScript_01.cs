@@ -1,39 +1,39 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 
-public class Civilian : MonoBehaviour {
-
+public class CivilianScript_01 : MonoBehaviour {
+	
 	public enum CivilState
 	{
 		Waiting, FollowingPlayer, Returning, Atacking, Panicking
 	}
-
+	
 	public SpawnPoint spawnPoint;
 	public CivilState state;
 	private Vector3 home;
-
+	
 	private NavMeshAgent nav;
 	private Transform player;
 	private CrowdManager crowdManager;
 	private MoraleManager_00 moraleManager;
-
+	
 	public bool isInCrowd = false;
 	public float distanceToPlayer;
 	public Vector3 offset;
 	public float rayRange;
 	public bool isAlive = true;
-
+	
 	void Start ()
 	{
 		state = CivilState.Waiting;
 		home = transform.position;
-
+		
 		nav = GetComponent <NavMeshAgent> ();
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		crowdManager = GameObject.FindGameObjectWithTag ("CrowdManager").GetComponent<CrowdManager>();
 		moraleManager = GameObject.FindGameObjectWithTag ("moraleManager").GetComponent<MoraleManager_00>();
 	}
-
+	
 	void Update ()
 	{
 		if(isAlive)
@@ -126,7 +126,7 @@ public class Civilian : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	bool ObstacleDetection ()
 	{
 		Vector3 direction = nav.destination - transform.position;
@@ -145,7 +145,7 @@ public class Civilian : MonoBehaviour {
 		
 		return false;
 	}
-
+	
 	void Death ()
 	{
 		isAlive = false;
@@ -153,10 +153,11 @@ public class Civilian : MonoBehaviour {
 		crowdManager.removeCivilian (this);
 		Destroy (gameObject);
 	}
-
+	
 	void OnDrawGizmos ()
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawLine (transform.position, player.position);
 	}
 }
+*/
