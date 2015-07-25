@@ -80,7 +80,7 @@ public class RaygunScript_01 : MonoBehaviour
 				}
 				else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
 				{
-					if(target.tag == "Cop" || target.tag == "ArmouredCar")
+					if(target.tag == "Policeman" || target.tag == "ArmouredCar")
 					{
 						return true;
 					}
@@ -157,5 +157,10 @@ public class RaygunScript_01 : MonoBehaviour
 	public bool isFiring()
 	{
 		return firing;
+	}
+
+	public Collider getCurrentTarget()
+	{
+		return currentTarget;
 	}
 }
