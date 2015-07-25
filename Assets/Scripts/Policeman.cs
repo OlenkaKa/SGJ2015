@@ -14,7 +14,7 @@ public class Policeman : MonoBehaviour
 	public Transform target;
 	public PoliceState state;
 
-	public float distanceToTarget; // after this distance police attack
+	public float attackDistance;
 	public float rayRange;
 	public float maxDistanceFromHome;
 
@@ -36,10 +36,10 @@ public class Policeman : MonoBehaviour
 			{
 				if(!InPatrolArea())
 					state = PoliceState.Returning;
-				else if(Vector3.Distance (target.position, transform.position) > distanceToTarget)
-					nav.SetDestination (target.position);// + offset);
-				//else
-				//	;//attack
+				else if(Vector3.Distance (target.position, transform.position) > attackDistance)
+					nav.SetDestination (ObstacleDetection () ? 
+					                    target.position : target.position + new Vector3 (Random.Range(1f, 2f), 0.5f, Random.Range(1f, 2f)));
+				//else attack
 			}
 			
 			else if (state == PoliceState.Returning)
@@ -84,7 +84,7 @@ public class Policeman : MonoBehaviour
 
 	bool InPatrolArea()
 	{
-		if (Vector3.Distance (target.position, transform.position) > maxDistanceFromHome)
+		if (Vector3.Distance (home, transform.position) > maxDistanceFromHome)
 			return false;
 		return true;
 	}
@@ -97,7 +97,7 @@ public class Policeman : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		if(other.tag == "Civilian" || other.tag == "Player")
+		if(InPatrolArea() && other.tag == "Civilian" || other.tag == "Player")
 		{
 			SetTarget(other.transform);
 			group.BroadcastTarget (target);

@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 
 public class PoliceGroup : MonoBehaviour {
 
 	public int policeAmount;
 	public Object policePrefab;
 
+	public float maxDistanceFromHome;
+	public float attackDistance;
+	public float rayRange;
+
 	private List<Policeman> police;
+	private static Mutex mut = new Mutex();
 	
 	void Start ()
 	{
@@ -21,9 +27,11 @@ public class PoliceGroup : MonoBehaviour {
 			policeman.group = this;
 			policeman.state = Policeman.PoliceState.Waiting;
 			policeman.home = startPos;
-			policeman.maxDistanceFromHome = 10;
-			policeman.distanceToTarget = 5;
-			policeman.rayRange = 5;
+
+			// policemen details
+			policeman.maxDistanceFromHome = maxDistanceFromHome;
+			policeman.attackDistance = attackDistance;
+			policeman.rayRange = rayRange;
 
 			police.Add(policeman);
 		}
@@ -32,15 +40,19 @@ public class PoliceGroup : MonoBehaviour {
 
 	public void RemovePoliceman(Policeman p)
 	{
+		mut.WaitOne();
 		police.Remove (p);
+		mut.ReleaseMutex();
 	}
 
 	public void BroadcastTarget(Transform target)
 	{
+		mut.WaitOne();
 		for (int i = 0; i < police.Count; ++i)
 		{
 			if(police[i].state != Policeman.PoliceState.Following)
 				police[i].SetTarget(target);
 		}
+		mut.ReleaseMutex();
 	}
 }
