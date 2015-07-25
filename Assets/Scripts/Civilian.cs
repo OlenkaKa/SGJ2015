@@ -87,30 +87,56 @@ public class Civilian : MonoBehaviour {
 						else
 						{
 							//TODO
+							state = CivilState.FollowingPlayer;
 						}
 					}
 					else if (state == CivilState.Panicking)
 					{
-						nav.SetDestination (home);
-						isInCrowd = false;
+						if(isInCrowd)
+						{
+							isInCrowd = false;
+							crowdManager.removeCivilian (this);
+						}
+						if(moraleManager.getOrder() == "Panic")
+						{
+							nav.SetDestination (home);
+						}
+						else
+						{
+							state = CivilState.Waiting;
+						}
 					}
 					else if (state == CivilState.Returning)
 					{
-						if(moraleManager.getOrder() == "Atack")
+						if(isInCrowd)
 						{
-							state = CivilState.Atacking;
-						}
-						else if(moraleManager.getOrder() == "Panic")
-						{
-							state = CivilState.Panicking;
-						}
-						else if(moraleManager.getOrder() == "Follow")
-						{
-							state = CivilState.FollowingPlayer;
+							if(moraleManager.getOrder() == "Atack")
+							{
+								state = CivilState.Atacking;
+							}
+							else if(moraleManager.getOrder() == "Panic")
+							{
+								state = CivilState.Panicking;
+							}
+							else if(moraleManager.getOrder() == "Follow")
+							{
+								state = CivilState.FollowingPlayer;
+							}
+							else if(transform.position == home)
+							{
+								state = CivilState.Waiting;
+								isInCrowd = false;
+								crowdManager.removeCivilian (this);
+							}
+							else
+							{
+								nav.SetDestination (home);
+							}
 						}
 						else if(transform.position == home)
 						{
 							state = CivilState.Waiting;
+							crowdManager.removeCivilian (this);
 							isInCrowd = false;
 						}
 						else

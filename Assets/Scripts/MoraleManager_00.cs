@@ -8,33 +8,31 @@ public class MoraleManager_00 : MonoBehaviour {
 	public bool isHeroic;
 	private float currentMoraleValue;
 	
-	private float[] MORALE_RANGE = {-10, 0, 10, 20, 30};
-	private float MORALE_DRIFT = 1/60;
-	private float MULTIPLIER = 3;
+	private float[] MORALE_RANGE = {-10f, 0f, 10f, 20f, 30f};
+	private float MORALE_DRIFT = 0.01f;
+	private float MULTIPLIER = 3f;
 	
 	// Use this for initialization
 	void Start () 
 	{
 		currentOrder = "Follow";
-		currentMoraleValue = 0;
+		currentMoraleValue = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		bool prevIsPanicking = isPanicking;
 		moraleDrift ();
-		if (isPanicking) 
+		if(prevIsPanicking && !isPanicking)
 		{
-			if(currentMoraleValue > MORALE_RANGE[1] && isPanicking)
-			{
-				isPanicking = false;
-				currentOrder = "Follow";
-			}
-			else
-			{
-				currentOrder = "Panic";
-			}
+			currentOrder = "Follow";
 		}
+		else if(prevIsPanicking && isPanicking)
+		{
+			currentOrder = "Panic";
+		}
+		Debug.Log (currentMoraleValue + " Morale " + currentOrder + " P " + isPanicking + " H " + isHeroic);
 	}
 	
 	//Drifts morale value towards neutrality
@@ -123,11 +121,11 @@ public class MoraleManager_00 : MonoBehaviour {
 
 	public void decreaseMorale(float effect)
 	{
-		currentMoraleValue += effect;
+		currentMoraleValue -= effect;
 	}
 
 	public void increaseMorale(float effect)
 	{
-		currentMoraleValue -= effect;
+		currentMoraleValue += effect;
 	}
 }
