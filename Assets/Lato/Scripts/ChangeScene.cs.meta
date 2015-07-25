@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 312c3063c18d45543ba70efbb8fe99c5
+timeCreated: 1437811035
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - fadingScreen: {fileID: 2800000, guid: 26d1eda5d1bfae845a10683240488c12, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
