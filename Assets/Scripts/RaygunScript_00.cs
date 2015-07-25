@@ -62,7 +62,7 @@ public class RaygunScript_00 : MonoBehaviour
 			return false;
 		}
 		
-		HealthScript_01 healthScript = target.GetComponent<HealthScript_01> ();
+		HealthScript_00 healthScript = target.GetComponent<HealthScript_00> ();
 		if (healthScript == null) 
 		{
 			return false;
@@ -71,21 +71,7 @@ public class RaygunScript_00 : MonoBehaviour
 		{
 			if(RayTargetCheck(target))
 			{
-				if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
-				{
-					if(target.gameObject.tag == "Player" || target.gameObject.tag == "Civilian")
-					{
-						return true;
-					}
-				}
-				else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
-				{
-					if(target.gameObject.tag == "Policeman" || target.gameObject.tag == "ArmouredCar")
-					{
-						return true;
-					}
-				}
-				return false;
+				return true;
 			}
 			else
 			{
@@ -118,7 +104,21 @@ public class RaygunScript_00 : MonoBehaviour
 		
 		if(Physics.Raycast (shootRay, out shootHit, MAX_RANGE))
 		{
-			return true;
+			if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
+			{
+				if(shootHit.collider.gameObject.tag == "Player" || shootHit.collider.gameObject.tag == "Civilian")
+				{
+					return true;
+				}
+			}
+			else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
+			{
+				if(shootHit.collider.gameObject.tag == "Policeman" || shootHit.collider.gameObject.tag == "ArmouredCar")
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 		return false;
 	}
@@ -138,7 +138,7 @@ public class RaygunScript_00 : MonoBehaviour
 			
 			if(Physics.Raycast (shootRay, out shootHit, MAX_RANGE))
 			{
-				HealthScript_01 healthScript = shootHit.collider.GetComponent <HealthScript_01> ();
+				HealthScript_00 healthScript = shootHit.collider.GetComponent <HealthScript_00> ();
 				if(healthScript != null)
 				{
 					healthScript.TakeDamage (DAMAGE);
