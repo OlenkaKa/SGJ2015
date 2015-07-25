@@ -5,7 +5,7 @@ using System;
 public class MicrophoneInput : MonoBehaviour {
 
 
-	bool audioExists = false;
+	//bool audioExists = false;
 
 	float startTime; // declare this outside any function
 
