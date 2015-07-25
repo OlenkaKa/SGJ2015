@@ -4,16 +4,21 @@ using System.Collections;
 public class Controller : MonoBehaviour {
 
 	public float speed = 5;
-	public float range = 10;
+	public float range = 5;
+
+	private Vector3 oldPosition;
+	private Vector3 currPosition;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		currPosition = oldPosition = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+
 		//PORUSZANIE
 		if (Input.GetKey ("w"))
 			transform.Translate (Vector3.forward * speed * Time.deltaTime);
@@ -27,16 +32,31 @@ public class Controller : MonoBehaviour {
 		if (Input.GetKey ("d"))
 			transform.Translate (Vector3.right * speed * Time.deltaTime);
 
-		//WYKRYWANIE PRZESZKODY
-		Ray ray = new Ray (transform.position, Vector3.forward);
-		RaycastHit hit;
+		currPosition = transform.position;
 
-		if(Physics.Raycast (ray, out hit, range))
+		Vector3 direction = currPosition - oldPosition;
+
+		if(direction.magnitude > 0)
 		{
-			if(hit.collider.gameObject.tag == "Obstacle")
+			//WYKRYWANIE PRZESZKODY
+			Ray ray = new Ray (transform.position, direction.normalized);
+			RaycastHit hit;
+
+			if(Physics.Raycast (ray, out hit, range))
 			{
-				hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+				if(hit.collider.gameObject.tag == "Obstacle")
+				{
+					hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+				}
+				else if(hit.collider.GetComponent<Pathfinder>())
+				{
+					hit.collider.GetComponent<Pathfinder>().leader = transform;
+					hit.collider.GetComponent<Pathfinder>().ofset = new Vector3(Random.Range (-hit.collider.GetComponent<Pathfinder>().maxOfset, hit.collider.GetComponent<Pathfinder>().maxOfset),0,Random.Range (-hit.collider.GetComponent<Pathfinder>().maxOfset, hit.collider.GetComponent<Pathfinder>().maxOfset));
+				}
 			}
 		}
+
+		oldPosition = currPosition;
 	}
+
 }
