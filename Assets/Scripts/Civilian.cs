@@ -105,7 +105,7 @@ public class Civilian : MonoBehaviour {
 							weapon.setFiring (false);
 							state = CivilState.FollowingPlayer;
 						}
-						//TODO
+						//TODO wykrywanie i podazanie do policjantow
 						else if(Vector3.Distance (player.position, transform.position) > distanceToPlayer)
 						{
 							nav.SetDestination (ObstacleDetection () ? player.position : player.position + offset);
@@ -188,7 +188,7 @@ public class Civilian : MonoBehaviour {
 		{
 			if(hit.collider.gameObject.tag == "Obstacle")
 			{
-				Debug.Log ("Obstacle detected");
+				//Debug.Log ("Obstacle detected");
 				return true;
 			}
 			

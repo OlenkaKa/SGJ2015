@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RaygunScript_00 : MonoBehaviour 
 {
+	private MoraleManager_00 moraleManager;
+
 	public int DAMAGE;
 	public float MAX_RELOAD_TIME;
 	public float MAX_RANGE;
@@ -22,6 +24,7 @@ public class RaygunScript_00 : MonoBehaviour
 		currentTarget = null;
 		currentReloadTime = 0;
 		shootSound = GetComponent<AudioSource> ();
+		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
 	}
 	
 	// Update is called once per frame
@@ -142,7 +145,21 @@ public class RaygunScript_00 : MonoBehaviour
 				HealthScript_00 healthScript = shootHit.collider.GetComponent <HealthScript_00> ();
 				if(healthScript != null)
 				{
-					healthScript.TakeDamage (DAMAGE);
+					if(gameObject.tag == "Policeman" || gameObject.tag == "ArmouredCar")
+					{
+						healthScript.TakeDamage (DAMAGE);
+					}
+					else if(gameObject.tag == "Player" || gameObject.tag == "Civilian")
+					{
+						if(moraleManager != null)
+						{
+							healthScript.TakeDamage (DAMAGE * moraleManager.getBuff());
+						}
+						else
+						{
+							healthScript.TakeDamage (DAMAGE);
+						}
+					}
 					shootSound.Play();
 					currentReloadTime = MAX_RELOAD_TIME;
 				}
