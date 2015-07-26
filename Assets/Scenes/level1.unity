@@ -2113,6 +2113,14 @@ Prefab:
       propertyPath: Priority
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8210128, guid: 2ff247fb668ac434d954dc35a05ae283, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8210128, guid: 2ff247fb668ac434d954dc35a05ae283, type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11423960, guid: 2ff247fb668ac434d954dc35a05ae283, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2ff247fb668ac434d954dc35a05ae283, type: 2}

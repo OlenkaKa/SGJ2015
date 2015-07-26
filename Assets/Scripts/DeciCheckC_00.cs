@@ -13,6 +13,7 @@ public class DeciCheckC_00 : MonoBehaviour {
 	public Texture winText;
 	bool toggleGUI;
 	private MoraleManager_00 moraleManager;
+	bool recording;
 	
 	private AudioSource source; 
 	private float[] samples; // audio samples
@@ -23,31 +24,38 @@ public class DeciCheckC_00 : MonoBehaviour {
 		samples = new float[qSamples];
 		success = false;
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
+		recording = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		GetVolume();
-		if (rmsValue >= 0.009)
+		if (rmsValue >= 0.9 && recording == false)
 		{
 			success = true;
 			Debug.Log ("Success!");
-			Motivated();
 			moraleManager.increaseMorale(9f);
+			recording = true;
+			StartCoroutine(Restart());
+
 		} 
-		else if(rmsValue >= 0.6)
+		else if(rmsValue >= 0.6 & recording == false )
 		{
 			moraleManager.increaseMorale(6f);
+			recording = true;
+			StartCoroutine(Restart());
 		}
 		
-		else if(rmsValue >= 0.3)
+		else if(rmsValue >= 0.3 & recording == false)
 		{
 			moraleManager.increaseMorale(3f);
+			recording = true;
+			StartCoroutine(Restart());
 		}
 		
 		else 
 		{
-			Debug.Log ("Failure");
+			//Debug.Log ("Failure");
 		}
 	}
 	
@@ -71,13 +79,9 @@ public class DeciCheckC_00 : MonoBehaviour {
 			
 		} 
 	}
-	
-	void Motivated() {
-		//toggleGUI = true;
-		//yield return new WaitForSeconds(2);
-		//toggleGUI = false;
-		//script = GetComponent(DeciCheck);
-		//script.enabled = false;
-		
+
+	IEnumerator Restart() {
+		yield return new WaitForSeconds(2);
+		recording = false;
 	}
 }
