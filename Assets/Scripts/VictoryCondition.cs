@@ -15,14 +15,15 @@ public class VictoryCondition : MonoBehaviour {
 			{
 				if(crowdManager.CalculateCrowd () >= crowdSize)
 				{
-					Victory ();
+					//Victory ();
+					Application.LoadLevel ("level1");
 				}
 			}
 			else if(Application.loadedLevelName == "level1" && policeGroup != null)
 			{
 				if(policeGroup.GetPolicemanCount () == 0)
 				{
-					Victory ();
+					Application.LoadLevel ("MainMenu");
 				}
 			}
 		}

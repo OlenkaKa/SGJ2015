@@ -1275,8 +1275,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124226}
-  m_LocalRotation: {x: .629998386, y: 0, z: 0, w: .776596487}
-  m_LocalPosition: {x: 0, y: 7.1500001, z: -2.21000004}
+  m_LocalRotation: {x: .506674588, y: 0, z: 0, w: .862137437}
+  m_LocalPosition: {x: 0, y: 8.5, z: -3.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 459530}
@@ -2717,6 +2717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01953a6a4a80d6d4082cfa9397d276ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  porazka: {fileID: 0}
+  healthScript: {fileID: 0}
   speed: 5
   crowdManager: {fileID: 0}
 --- !u!114 &11411692

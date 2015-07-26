@@ -16,15 +16,19 @@ public class PlayerController_00 : MonoBehaviour {
 	{
 		healthScript = GetComponent<HealthScript_00> ();
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
+		crowdManager = GameObject.FindGameObjectWithTag ("CrowdManager").GetComponent<CrowdManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (!healthScript.IsAlive())
+		if (healthScript != null) 
 		{
-			porazka.text = "Game over!";
-			return;
+			if (!healthScript.IsAlive())
+			{
+				porazka.text = "Game over!";
+				return;
+			}
 		}
 		
 		//PORUSZANIE
