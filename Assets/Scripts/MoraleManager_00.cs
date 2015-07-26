@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class MoraleManager_00 : MonoBehaviour {
+
+	public Text text;
 	
 	public string currentOrder;	//Follow, Atack, Panic, Retreat
 	public bool isPanicking;
@@ -41,6 +44,7 @@ public class MoraleManager_00 : MonoBehaviour {
 			currentOrder = "Panic";
 		}
 		Debug.Log (currentMoraleValue + " Morale " + currentOrder + " P " + isPanicking + " H " + isHeroic);
+		if(text) text.text = "Morale: " + currentMoraleValue;
 	}
 	
 	//Drifts morale value towards neutrality

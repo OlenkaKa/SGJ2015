@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HealthScript_00 : MonoBehaviour 
 {
+	public Text text;
+
 	public float MAX_HEALTH;
 	public float REGENERATION;
 	private float currentHealth;
@@ -24,6 +27,8 @@ public class HealthScript_00 : MonoBehaviour
 				currentHealth = MAX_HEALTH;
 			}
 		}
+		if (text)
+			text.text = "Zdrowie: " + currentHealth;
 	}
 
 	public void TakeDamage(float damage)
