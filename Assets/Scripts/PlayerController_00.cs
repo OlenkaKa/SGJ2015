@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController_00 : MonoBehaviour {
-	
+
+	public Text porazka;
+	public HealthScript_00 healthScript;
+
 	public float speed = 5;
 	public CrowdManager crowdManager;
 	private MoraleManager_00 moraleManager;
@@ -10,12 +14,18 @@ public class PlayerController_00 : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		healthScript = GetComponent<HealthScript_00> ();
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if (!healthScript.IsAlive())
+		{
+			porazka.text = "Game over!";
+			return;
+		}
 		
 		//PORUSZANIE
 		if (Input.GetKey ("w"))
