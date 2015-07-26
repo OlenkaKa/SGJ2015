@@ -14,7 +14,6 @@ public class PoliceGroup : MonoBehaviour {
 	public float rayRange;
 	public int damage;
 	public float reloadTime;
-	public float shootRange;
 
 	private List<Policeman> police;
 	private static Mutex mut = new Mutex();
@@ -40,7 +39,7 @@ public class PoliceGroup : MonoBehaviour {
 			RaygunScript_00 raygun = policemanObj.GetComponent<RaygunScript_00>();
 			raygun.DAMAGE = damage;
 			raygun.MAX_RELOAD_TIME = reloadTime;
-			raygun.MAX_RANGE = shootRange;
+			raygun.MAX_RANGE = attackDistance;
 
 			police.Add(policeman);
 		}

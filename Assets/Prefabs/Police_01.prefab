@@ -137,9 +137,9 @@ GameObject:
   - 136: {fileID: 13653794}
   - 136: {fileID: 13608790}
   - 114: {fileID: 11463256}
+  - 114: {fileID: 11485096}
   - 82: {fileID: 8262378}
   - 54: {fileID: 5493342}
-  - 114: {fileID: 11485096}
   m_Layer: 0
   m_Name: Police_01
   m_TagString: Policeman
@@ -2307,9 +2307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febfb4ef2b668644d972c536a898729f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DAMAGE: 5
+  DAMAGE: 2
   MAX_RELOAD_TIME: 60
-  MAX_RANGE: 5
+  MAX_RANGE: 7
   firing: 1
 --- !u!114 &11485096
 MonoBehaviour:
@@ -5959,11 +5959,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: DAMAGE
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: MAX_RANGE
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

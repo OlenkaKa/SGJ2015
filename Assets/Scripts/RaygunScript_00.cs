@@ -14,7 +14,6 @@ public class RaygunScript_00 : MonoBehaviour
 	private Ray shootRay;
 	private RaycastHit shootHit;
 	private AudioSource shootSound;  
-	private HealthScript_00 healthScript;
 
 	public bool firing;
 	
@@ -26,7 +25,6 @@ public class RaygunScript_00 : MonoBehaviour
 		currentReloadTime = 0;
 		shootSound = GetComponent<AudioSource> ();
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
-		healthScript = GetComponent<HealthScript_00> ();
 	}
 	
 	// Update is called once per frame
