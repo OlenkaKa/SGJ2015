@@ -565,7 +565,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: spawnAmount
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 104870, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: m_Name
@@ -573,6 +573,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: spawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
+      propertyPath: spawnDelay
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1653,7 +1657,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: spawnAmount
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 104870, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: m_Name
@@ -1661,6 +1665,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: spawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
+      propertyPath: spawnDelay
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1906,10 +1914,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: spawnAmount
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
       propertyPath: spawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11485634, guid: 6a46666f9cd3a634aa0dc954fc597d89, type: 2}
+      propertyPath: spawnDelay
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

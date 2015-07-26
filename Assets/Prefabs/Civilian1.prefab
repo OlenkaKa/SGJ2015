@@ -2212,7 +2212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febfb4ef2b668644d972c536a898729f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DAMAGE: 1
+  DAMAGE: 0
   MAX_RELOAD_TIME: 60
   MAX_RANGE: 2
   firing: 1
@@ -3712,7 +3712,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: DAMAGE
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
