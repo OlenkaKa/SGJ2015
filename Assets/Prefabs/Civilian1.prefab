@@ -113,13 +113,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 478458}
-  - 95: {fileID: 9503022}
   - 195: {fileID: 19594908}
-  - 114: {fileID: 11489998}
   - 54: {fileID: 5461646}
   - 65: {fileID: 6503268}
+  - 114: {fileID: 11489998}
   - 114: {fileID: 11448802}
   - 114: {fileID: 11402840}
+  - 95: {fileID: 9503022}
   - 82: {fileID: 8297186}
   m_Layer: 0
   m_Name: Civilian1
@@ -2610,6 +2610,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: MAX_RELOAD_TIME
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
