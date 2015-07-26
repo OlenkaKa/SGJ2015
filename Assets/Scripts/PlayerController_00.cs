@@ -10,7 +10,7 @@ public class PlayerController_00 : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		moraleManager = GameObject.FindGameObjectWithTag ("moraleManager").GetComponent<MoraleManager_00>();
+		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
 	}
 	
 	// Update is called once per frame

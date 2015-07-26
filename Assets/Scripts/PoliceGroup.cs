@@ -65,4 +65,8 @@ public class PoliceGroup : MonoBehaviour {
 		mut.ReleaseMutex();
 	}
 
+	public int GetPolicemanCount ()
+	{
+		return police.Count;
+	}
 }
