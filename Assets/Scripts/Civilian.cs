@@ -25,6 +25,13 @@ public class Civilian : MonoBehaviour {
 	public float rayRange;
 	public bool isAlive = true;
 
+	public const float MAX_SPEED = 15;
+	public const float MIN_SPEED = 10;
+	public const float MAX_ANGULAR_SPEED = 120;
+	public const float MIN_ANGULAR_SPEED = 60;
+	public const float MAX_ACCELERATION = 15;
+	public const float MIN_ACCELERATION = 10;
+
 	void Start ()
 	{
 		state = CivilState.Waiting;
@@ -37,6 +44,10 @@ public class Civilian : MonoBehaviour {
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
 		healthScript = GetComponent<HealthScript_00> ();
 		//weapon.setFiring (false);
+
+		nav.speed = Random.Range (MIN_SPEED, MAX_SPEED);
+		nav.angularSpeed = Random.Range (MIN_ANGULAR_SPEED, MAX_ANGULAR_SPEED);
+		nav.acceleration = Random.Range (MIN_ACCELERATION, MAX_ACCELERATION);
 	}
 
 	void Update ()
