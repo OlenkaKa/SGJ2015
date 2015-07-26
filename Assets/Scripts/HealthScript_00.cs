@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HealthScript_00 : MonoBehaviour 
 {
+	public Text text;
+
 	public float MAX_HEALTH;
 	public float REGENERATION;
 	private float currentHealth;
@@ -24,6 +27,8 @@ public class HealthScript_00 : MonoBehaviour
 				currentHealth = MAX_HEALTH;
 			}
 		}
+		if (text)
+			text.text = "Zdrowie: " + currentHealth;
 	}
 
 	public void TakeDamage(float damage)
@@ -31,9 +36,12 @@ public class HealthScript_00 : MonoBehaviour
 		if (currentHealth > 0) 
 		{
 			currentHealth -= damage;
-			ParticleSystem sys;
-			if(sys = GetComponentInChildren<ParticleSystem>())
-				sys.Play();
+			ParticleSystem[] sys = GetComponentsInChildren<ParticleSystem>();
+			foreach(ParticleSystem s in sys)
+			{
+				if(s.tag == "BloodParticles")
+					s.Play();
+			}
 			if (currentHealth < 0) 
 			{
 				currentHealth = 0;

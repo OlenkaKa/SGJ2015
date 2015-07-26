@@ -12,7 +12,7 @@ GameObject:
   - 199: {fileID: 19995048}
   m_Layer: 0
   m_Name: WhiteSmoke
-  m_TagString: Untagged
+  m_TagString: GunParticles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 436264}
   m_Layer: 0
   m_Name: GunParticles
-  m_TagString: Untagged
+  m_TagString: GunParticles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ GameObject:
   - 198: {fileID: 19877090}
   m_Layer: 0
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: GunParticles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2265,6 +2265,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: GunParticles
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
