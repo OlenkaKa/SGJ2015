@@ -45,6 +45,7 @@ public class Civilian : MonoBehaviour {
 		healthScript = GetComponent<HealthScript_00> ();
 		//weapon.setFiring (false);
 
+
 		nav.speed = Random.Range (MIN_SPEED, MAX_SPEED);
 		nav.angularSpeed = Random.Range (MIN_ANGULAR_SPEED, MAX_ANGULAR_SPEED);
 		nav.acceleration = Random.Range (MIN_ACCELERATION, MAX_ACCELERATION);

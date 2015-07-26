@@ -21,6 +21,14 @@ public class Policeman : MonoBehaviour
 	private MoraleManager_00 moraleManager;
 	private HealthScript_00 healthScript;
 	private NavMeshAgent nav;
+
+	public const float MAX_SPEED = 10;
+	public const float MIN_SPEED = 5;
+	public const float MAX_ANGULAR_SPEED = 120;
+	public const float MIN_ANGULAR_SPEED = 60;
+	public const float MAX_ACCELERATION = 5;
+	public const float MIN_ACCELERATION = 1;
+
 	
 	void Start ()
 	{
@@ -28,6 +36,10 @@ public class Policeman : MonoBehaviour
 		nav = GetComponent <NavMeshAgent> ();
 		healthScript = GetComponent<HealthScript_00> ();
 		moraleManager = GameObject.FindGameObjectWithTag ("MoraleManager").GetComponent<MoraleManager_00>();
+
+		nav.speed = Random.Range (MIN_SPEED, MAX_SPEED);
+		nav.angularSpeed = Random.Range (MIN_ANGULAR_SPEED, MAX_ANGULAR_SPEED);
+		nav.acceleration = Random.Range (MIN_ACCELERATION, MAX_ACCELERATION);
 
 		StartCoroutine (UpdateTarget ());
 	}
