@@ -450,9 +450,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 432660}
-  - 114: {fileID: 11462008}
   - 195: {fileID: 19540870}
   - 54: {fileID: 5439604}
+  - 65: {fileID: 6509732}
+  - 114: {fileID: 11462008}
+  - 114: {fileID: 11430356}
+  - 114: {fileID: 11423960}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1588,8 +1591,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120546}
-  m_LocalRotation: {x: .331278026, y: 0, z: 0, w: .943533242}
-  m_LocalPosition: {x: 0, y: 4.63199997, z: -5.81899977}
+  m_LocalRotation: {x: .50867027, y: 0, z: 0, w: .860961437}
+  m_LocalPosition: {x: 0, y: 7.1500001, z: -2.21000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 432660}
@@ -2105,7 +2108,7 @@ Transform:
   m_GameObject: {fileID: 155656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.39999998, y: 1, z: 1.39999998}
   m_Children: []
   m_Father: {fileID: 432660}
   m_RootOrder: 1
@@ -2221,6 +2224,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6509732
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.6150589, z: 1}
+  m_Center: {x: 0, y: .807529449, z: 0}
 --- !u!81 &8126942
 AudioListener:
   m_ObjectHideFlags: 1
@@ -2321,6 +2336,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11423960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6d65f5273ad1f4791757fe695bf199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoutText: {fileID: 2800000, guid: 8d8592eea1c84aa4196bd95320e3cb49, type: 3}
+  followText: {fileID: 2800000, guid: 77b8ef85e107a53429c018e882b6ff71, type: 3}
+  attackText: {fileID: 2800000, guid: 2653593a080afb845aae3693558ccc77, type: 3}
+--- !u!114 &11430356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338871f83a631ac42870b986a8a929f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  target: {fileID: 432660}
+  boundary: 50
 --- !u!114 &11462008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2329,7 +2372,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 138500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d338799e48f9ec439af3baf06034145, type: 3}
+  m_Script: {fileID: 11500000, guid: 01953a6a4a80d6d4082cfa9397d276ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5

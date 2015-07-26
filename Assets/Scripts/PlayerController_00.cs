@@ -37,9 +37,6 @@ public class PlayerController_00 : MonoBehaviour {
 
 		if (Input.GetKey ("2"))
 			moraleManager.setOrder("Atack");
-
-		if (Input.GetKey ("3"))
-			moraleManager.setOrder("Shout");
 	}
 	
 	void OnTriggerEnter (Collider other)
