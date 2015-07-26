@@ -7,13 +7,13 @@ public class SpawnPoint : MonoBehaviour
 	public int spawnAmount;
 	public int spawnCounter = 0;
 
-	public float spawnRate = 5;
+	public float spawnDelay = 5;
 	private float timeToSpawn;
 
 
 	void Start ()
 	{
-		timeToSpawn = spawnRate;
+		timeToSpawn = spawnDelay;
 	}
 	void Update ()
 	{
@@ -22,7 +22,7 @@ public class SpawnPoint : MonoBehaviour
 		if (spawnCounter < spawnAmount && timeToSpawn < 0)
 		{
 			ChildCreate ();
-			timeToSpawn = spawnRate;
+			timeToSpawn = spawnDelay;
 		}
 	}
 
