@@ -168,6 +168,13 @@ public class RaygunScript_00 : MonoBehaviour
 						}
 					}
 					shootSound.Play();
+
+					ParticleSystem[] sys = GetComponentsInChildren<ParticleSystem>();
+					foreach(ParticleSystem s in sys)
+					{
+						if(s.tag == "GunParticles")
+							s.Play();
+					}
 					currentReloadTime = MAX_RELOAD_TIME;
 				}
 			}

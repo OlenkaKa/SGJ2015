@@ -31,9 +31,12 @@ public class HealthScript_00 : MonoBehaviour
 		if (currentHealth > 0) 
 		{
 			currentHealth -= damage;
-			ParticleSystem sys;
-			if(sys = GetComponentInChildren<ParticleSystem>())
-				sys.Play();
+			ParticleSystem[] sys = GetComponentsInChildren<ParticleSystem>();
+			foreach(ParticleSystem s in sys)
+			{
+				if(s.tag == "BloodParticles")
+					s.Play();
+			}
 			if (currentHealth < 0) 
 			{
 				currentHealth = 0;
