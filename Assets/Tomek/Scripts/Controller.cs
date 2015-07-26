@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Controller : MonoBehaviour {
+
+	public Text porazka;
+	public HealthScript_00 healthScript;
 
 	public float speed = 5;
 	//public float range = 5;
@@ -14,12 +18,17 @@ public class Controller : MonoBehaviour {
 	void Start () 
 	{
 		//currPosition = oldPosition = transform.position;
+		healthScript = GetComponent<HealthScript_00> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
-
+		if (!healthScript.IsAlive())
+		{
+			porazka.text = "Game over!";
+			return;
+		}
 		//PORUSZANIE
 		if (Input.GetKey ("w"))
 			transform.Translate (Vector3.forward * speed * Time.deltaTime);
